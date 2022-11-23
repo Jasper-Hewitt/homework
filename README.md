@@ -11,4 +11,5 @@ stemmed code: https://github.com/Jasper-Hewitt/homework/blob/main/homework_stemm
 
 unstemmed code: https://github.com/Jasper-Hewitt/homework/blob/main/homework_UNstemmed_fake_news_detection.ipynb
 
+screenshot of the unfolded dataframe for closer inspection of the stemmed sentences: https://github.com/Jasper-Hewitt/homework/blob/main/example%20stemmed%20sentences.png
 
