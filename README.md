@@ -13,7 +13,7 @@ Questions:
   
   • _do other BERT pre-training models have better classification performance after fine-tuning?_
   
-I found that both bert-base-uncased and roberta-base perform significantly better after fine tuning (see table above). I think it is safe to assume that virtually all other BERT pre-trained models will have a better classification performance after fine-tuning
+I found that both bert-base-uncased and roberta-base perform significantly better after fine tuning (see table above). I think it is safe to assume that virtually all other BERT pre-trained models will have a better classification performance after fine-tuning.
 
 code:
 
