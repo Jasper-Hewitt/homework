@@ -5,7 +5,7 @@
 | model |  not finetuned   |finetuned (3 epochs) | 
 |  ---- |  ----  | ----  |
 bert-base-uncased |  0.494 | 0.975 |
-Roberta-base |  0.495 |  |
+Roberta-base |  0.495 | 0.997 |
 
 Questions: 
 
@@ -15,8 +15,11 @@ Questions:
   
 I found that both bert-base-uncased and roberta-large perform significantly better after fine tuning (see table above). I think it is safe to assume that virtually all other BERT pre-trained models will have a better classification performance after fine-tuning
 
+code:
 
-please refer to: Roberta_base_not_finetuned.ipynb, and Roberta-base_finetuned.ipynb for the code.
+not finetuned roberta-base: https://github.com/Jasper-Hewitt/homework/blob/main/Roberta_base_not_finetuned.ipynb
+
+finetuned roberta-base: https://github.com/Jasper-Hewitt/homework/blob/main/Roberta_base_finetuned.ipynb
 
 
 
