@@ -1,6 +1,30 @@
-# homework-individual assignment fake news detection
+# homework-individual assignment fake news detection with BERT 6/12/22
+
+
+
+| model |  not finetuned   |finetuned | 
+|  ---- |  ----  | ----  |
+bert-base-uncased |  0.494 | 0.975 |
+Roberta-large |  0.495 | ? |
+
+Questions: 
+
+  • _Can BERT have better classification performance without fine-tuning?_
+  
+  • _do other BERT pre-training models have better classification performance after fine-tuning?_
+  
+I found that both bert-base-uncased and roberta-large perform significantly better after fine tuning (see table above). I think it is safe to assume that virtually all other BERT pre-trained models will have a better classification performance after fine-tuning
+
+
+
+
+
+
+
+# homework-individual assignment fake news detection 22/11/22
 
   • _Can Stemming or Lemmatization improve the accuracy of fake news detection?_
+  
   • _Please perform an experiment and provide test results in any format._
 
 I found that stemming slightly increases the accuracy of fake news detection from 0.9041 to 0.9079. I reran the code several times and the stemmed text finishes higher consistenly. This was done with a datasize of 4000 and a maximum_df of 0.6. 
