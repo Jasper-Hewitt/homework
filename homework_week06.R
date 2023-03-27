@@ -113,10 +113,6 @@ district_yea_rate_2018<-ntc_ref%>%
 #now do the same for 2021
 district_yea_rate_2021<-ntc_ref%>%
   group_by(district.x)%>%
-  summarise(district_yea_2021=mean(yea_rate_2021))
-
-district_yea_rate_2021<-ntc_ref%>%
-  group_by(district.x)%>%
   summarise(district_yea_2021=sum(rf_17_yea) / sum(rf_17_valid_vote))
 
 #merge the two dataframes together
