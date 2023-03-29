@@ -88,12 +88,12 @@ ntc_ref <- ntc_ref %>%
 #Question 4: (2 points) Which li's yea rate has largest decrease? (Give me the li_id)
 #calculate the difference between yea_rate in 2018 and 2021.
 ntc_ref <- ntc_ref %>% 
-  mutate(yea_change = (yea_rate_2021 - yea_rate_2018) / yea_rate_2018 * 100 ) 
+  mutate(yea_change = yea_rate_2021 - yea_rate_2018)
 
 #sort the df in an ascending order to find the biggest decrease (this will show the row with the biggest minus value first)
 ntc_ref_sortdecrease <- ntc_ref[order(ntc_ref$yea_change, decreasing =FALSE),]
 #show first row with head
-head(ntc_ref_sortdecrease, 1) #li_id = 6502600-008, decrease = %-65.32640
+head(ntc_ref_sortdecrease, 1) #li_id = 6500600-021, decrease = -0.379371
 
 #_______________________________________________________________________________________________________
 #Question 5: (2 points) Which li's yea rate has largest increase? (Give me the li_id)
@@ -101,7 +101,8 @@ head(ntc_ref_sortdecrease, 1) #li_id = 6502600-008, decrease = %-65.32640
 #sort the df descending based on the yea_change column. So showing the highest value first  
 ntc_ref_sortincrease <- ntc_ref[order(ntc_ref$yea_change, decreasing =TRUE),] 
 #show first row with head()
-head(ntc_ref_sortincrease, 1) #li_id:6500400-010, increase = 36.807014116%
+head(ntc_ref_sortincrease, 1) #li_id:6500400-010, increase = +0.2155448
+
 
 #_______________________________________________________________________________________________________
 #Question 6: (6 points) Using dplyr's group_by() and summarise() to calculate every district's yea rate
@@ -123,13 +124,13 @@ district_yea_rate<-merge(district_yea_rate_2018, district_yea_rate_2021, by='dis
 
 #calculate the difference between mean yea rate in 2018 and 2021.
 district_yea_rate <- district_yea_rate %>% 
-  mutate(yea_change = (district_yea_2021 - district_yea_2018) / district_yea_2018 * 100 ) 
+  mutate(yea_change = district_yea_2021 - district_yea_2018)
 
 #sort the df in an ascending order based on the yea_change column to find the biggest decrease.
 district_yea_rate_decrease <- district_yea_rate[order(district_yea_rate$yea_change, decreasing =FALSE),]
 
 #show first row with head
-head(district_yea_rate_decrease, 1) #Gongliao, decrease %-51.040155
+head(district_yea_rate_decrease, 1) #Gongliao, decrease -0.25320491
 
 #_______________________________________________________________________________________________________
 #Question 8: (2 points)
@@ -140,10 +141,10 @@ head(district_yea_rate_decrease, 1) #Gongliao, decrease %-51.040155
 district_yea_rate_increase <- district_yea_rate[order(district_yea_rate$yea_change, decreasing =TRUE),]
 
 #show first row with head
-head(district_yea_rate_increase, 1) #Yonghe, decrease %-2.238938
+head(district_yea_rate_increase, 1) #Xindian, decrease -0.01397470
 
 #answer: there is no district with a mean increase in yeas. 
-#all districts show a decrease in yeas. 
+#all districts show a decrease in yea rates. 
 #the district with the smallest decrease in yeas is Yonghe. 
 
 
