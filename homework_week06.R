@@ -145,7 +145,7 @@ head(district_yea_rate_increase, 1) #Xindian, decrease -0.01397470
 
 #answer: there is no district with a mean increase in yeas. 
 #all districts show a decrease in yea rates. 
-#the district with the smallest decrease in yeas is Yonghe. 
+#the district with the smallest decrease in yeas is Xindian. 
 
 
 
