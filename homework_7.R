@@ -94,7 +94,8 @@ notrt_trump <- trumptweet %>%
 #Question 5 (5 points):
 
 #On many social media platforms, the "@" symbol is referred to as a "handle".
-#Apply regular expressions to extract the username associated with the "@" symbol in the "text" column of "notrt_trump" for the first row.
+#Apply regular expressions to extract the username associated with the "@" symbol 
+#in the "text" column of "notrt_trump" for the first row.
 
 #there is two ways to solve this problem. If we wanna stick to the same structure as we did in last class
 #we can do the following: 
@@ -119,43 +120,49 @@ print(handle) #nikkihaley
 #_______________________________________________________________________________
 #Question 6 (3 points)
 
-#Use gregexpr() to obtain a list called "atsign", which shows the starting positions and length of the usernames associated with the "@" symbol in the "text" column.
+#Use gregexpr() to obtain a list called "atsign", which shows the starting positions 
+#and length of the usernames associated with the "@" symbol in the "text" column.
 
 #we can use the same code as above and what we used in class. But I add perl=TRUE to get the pattern. 
 atsign <- gregexpr("(?<=@)[A-Za-z0-9_]+", notrt_trump$text, perl = TRUE)
 
 print(atsign)
 
-#Review the "atsign" list and identify the smallest row number that contains "@" symbols with a length greater than 2 and tell me the row number
+#Review the "atsign" list and identify the smallest row number that contains 
+#"@" symbols with a length greater than 2 and tell me the row number, ANSWER row 159
 
-#ANSWER:do you mean the smallest row number that contains a twitter handle? this would be row 1. it contains a twitter handle with a length of 10.
-#however, since we already got the handle of the first row in the previous question, I assume that this is not what you mean.
-#the second row with a Twitter handle is row number 8. It contains two handles 
+#I assume you mean the first row that has more than two handles.
+#we can scroll through the list to find the first hit, but this is time consuming. 
+#I found some code that uses which() and lengths() to find the 
+#lengths(atsign)>2 returns TRUE/FALSE for every element in the list. if the element in the list 
+#has more than 2 starting positions (and thus twitter handles) it shows TRUE, otherwise it shows FALSE
+#I also use which() so that the output only contains the elements that are TRUE so that I don't have to
+# manually scroll through the output to find the first position in the list that has more than 2 starting positions
 
-
-
+which(lengths(atsign) >2) #first row: 159
 #_______________________________________________________________________________
 #Question 7 (7 points)
 
-#Using a loop, extract the usernames associated with the "@" symbol in the "text" column of "notrt_trump" for the row you identified in Question 6.
+#Using a loop, extract the usernames associated with the "@" symbol in the 
+#"text" column of "notrt_trump" for the row you identified in Question 6.
 
-#assuming you mean the second lowest row number that contains @symbols (because we already found the handle to the first one in question 5). 
-#I've decided to look at row number 8. 
+#I've decided to look at row number 159.
 
-#for x in 1 to the length of atsign[[8]] (row number 8)
-for (x in 1:length(atsign[[8]])) {
+#for x in 1 to the length of atsign[[159]] (row number 159)
+for (x in 1:length(atsign[[159]])) {
 
-  #at_content = the starting positions of the handles in the text column of row 8 + the length of said handles -1 (to get rid of the space)
-  at_content <- substr(notrt_trump$text[8],
-                       atsign[[8]][x],
-                       atsign[[8]][x] + attr(atsign[[8]], "match.length")[x] - 1)
+  #at_content = extract from the starting positions of the handles in the text column of row 8 
+  #+ the length of said handles -1 (to get rid of the space)
+  at_content <- substr(notrt_trump$text[159],
+                       atsign[[159]][x],
+                       atsign[[159]][x] + attr(atsign[[159]], "match.length")[x] - 1)
   
-  print(at_content) # loudobbs and greggjarret 
+  print(at_content) #"flotus" "emmanuelmacron" "whitehouse"
 }
 
 #alternatively, the code below using regmatches shows the same results
-handle_8 <- regmatches(notrt_trump$text[8], gregexpr("(?<=@)[A-Za-z0-9_]+", notrt_trump$text[8], perl = TRUE))
-print(handle_8)
+handle_159 <- regmatches(notrt_trump$text[159], gregexpr("(?<=@)[A-Za-z0-9_]+", notrt_trump$text[159], perl = TRUE))
+print(handle_159) #"flotus" "emmanuelmacron" "whitehouse"
 
 
 #Now you have 30 points! Question 8 is a bonus!
