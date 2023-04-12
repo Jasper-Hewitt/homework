@@ -14,8 +14,6 @@
 
 ### Questions --------
 
-
-
 #Please read "trumptweets.xlsx", which contains Trump's tweets from Feb. 2017 to May 2018.
 #The "text" column contains the content of Trump's tweets.
 library("readxl")
@@ -23,7 +21,8 @@ library("dplyr")
 library('stringr')
 #Question 1 (5 points):
 
-#Using regular expressions (regexpr(), grep(), or grepl()) and other R skills, create a new column called "china".
+#Using regular expressions (regexpr(), grep(), or grepl()) and other R skills, 
+#create a new column called "china".
 #Label "china" column as 1 if Trump mentioned China, otherwise label it as 0.
 setwd("/Users/jasperhewitt/Desktop/big data & social analysis/code/datasets")
 trumptweet <- read_xlsx("trumptweets.xlsx")
@@ -36,7 +35,8 @@ trumptweet$China <- NA
 
 # I decided to use stringr from the Regex cheat sheet you provided because it looks a lot like
 #str.contains in python. str_detect will return an output of TRUE and FALSE to show whether
-#the sentence does or does not contain the word 'china'. I store the output in the variable 'chinamatch'
+#the sentence does or does not contain the word 'china'. I store the output 
+#in the variable 'chinamatch'
 chinamatch <- str_detect(trumptweet$text, "china")
 
 # if chinamatch for a specific row is TRUE, assign 1 to that row in the China column 
@@ -44,7 +44,8 @@ trumptweet$China[chinamatch] <- 1
 #  if chinamatch for a specific row is FALSE, assign 0 to that row in the China column
 trumptweet$China[!chinamatch] <- 0
 
-#count in how many tweets the word China appeared (count how many times 1 appears in the new column)
+#count in how many tweets the word China appeared (count how many times 
+#1 appears in the new column)
 china_count <- sum(trumptweet$China == 1)
 print(china_count) #73 tweets that contain the word 'china'
 
@@ -52,25 +53,30 @@ print(china_count) #73 tweets that contain the word 'china'
 #Question 2 (3 points):
 
 #The "created_at" column indicates when Trump posted his tweets.
-#Use "created_at" column to create a new column called "year", which shows the year in which the tweet was made.
+#Use "created_at" column to create a new column called "year", which shows the 
+#year in which the tweet was made.
 
 # find the position of the first '-' in the 'created_at' column and store it in the variable yp
 yp <- regexpr('-', trumptweet$created_at)
 
-#extract the characters from from the created_at column. Only take the ones from the first position
+#extract the characters from from the created_at column. 
+#Only take the ones from the first position
 #until the position of the first '-' minus 1 (because we do not want to include the dash).
-#this basically takes the first 4 characters from the rows in the created_at column and assigns them to the
+#this basically takes the first 4 characters from the rows in the 
+#created_at column and assigns them to the
 #new column 'year'
 trumptweet$year <- substr(trumptweet$created_at, 1, yp-1)
 
 #_______________________________________________________________________________
 #Question 3 (4 points):
 
-#Use group_by() and summarise() to determine the number of tweets made by Trump that mentioned China in 2017 and 2018.
+#Use group_by() and summarise() to determine the number of tweets 
+#made by Trump that mentioned China in 2017 and 2018.
 
 #step 1: select the two relevant columns, do not consider the rest
 #step 2: group_by year. so the new df will have two rows, 2017 and 2018 
-#step 3: use summarize to create a new column 'china_per_year' with the sum of the China column per year. 
+#step 3: use summarize to create a new column 'china_per_year' with 
+#the sum of the 1s China column per year. 
 #because all the values in the China column are already 0 or 1, this is an easy step
 selected_tweets <- trumptweet%>%
   select(China, year)%>%
@@ -81,14 +87,15 @@ selected_tweets <- trumptweet%>%
 #Question 4 (3 points):
 
 #The "is_retweet" column represents whether a tweet is a retweet or not.
-#Create a new dataframe called "notrt_trump" that includes only Trump's original tweets (i.e., tweets that are not retweets).
+#Create a new dataframe called "notrt_trump" that includes only Trump's original 
+#tweets (i.e., tweets that are not retweets).
 
-#use dplyr's 'filter' to filter trumptweet based on the condition is_retweet == FALSE (not a retweet).
-#the new dataframe is stored in notr_trump. this dataframe only contains TRump's original tweets
+#use dplyr's 'filter' to filter trumptweet based on the condition is_retweet == 
+#FALSE (not a retweet).
+#the new dataframe is stored in notr_trump. this dataframe only contains 
+#Trump's original tweets
 notrt_trump <- trumptweet %>%
   filter(is_retweet == FALSE) #2845 observations
-
-
 
 #_______________________________________________________________________________
 #Question 5 (5 points):
@@ -97,25 +104,31 @@ notrt_trump <- trumptweet %>%
 #Apply regular expressions to extract the username associated with the "@" symbol 
 #in the "text" column of "notrt_trump" for the first row.
 
-#there is two ways to solve this problem. If we wanna stick to the same structure as we did in last class
+#there is two ways to solve this problem. If we wanna stick to the same 
+#structure as we did in last class
 #we can do the following: 
-#find the starting position and length of the Twitter handle (I let chatGPT generate the pattern, as Googling resulted in 
-#many different patterns that all did not really work. chatGPT's pattern only works when you add the argument
-#perl=TRUE. This has something to do with different types of regexpr in R). 
-user_start_pos <- regexpr("(?<=@)[A-Za-z0-9_]+", notrt_trump$text[1], perl=TRUE)
-print(user_start_pos) #starting position 227. length 10 
+#find the starting position and length of the Twitter handle 
+#we can use the regexpr pattern that we used for the hashtags last class.
+#but we replace the # with @. The regexpr gets patterns that start with an @
+#and are followed by any letters or numbers, dashes and underscores. the plus 
+#the end means that it has to have at least one character after the @ in order 
+#to be selected by the regexpr. this is to prevent us from capturing any random
+#instances of the symbol '@'
+user_start_pos <- regexpr("@[A-Za-z0-9_]+", notrt_trump$text[1])
+print(user_start_pos) #starting position 226. length 11 
 
-#extract substring. from starting position, starting position + the length of the handle -1 (to get rid of the space)
+#extract substring. from starting position, starting position + the length 
+#of the handle -1 (to get rid of the space)
 username <- substr(notrt_trump$text[1],
                    user_start_pos,
                    user_start_pos + attr(user_start_pos, "match.length")-1)
-print(username) #nikkihaley
+print(username) #@nikkihaley
 
 #alternatively, I found a simpler and faster method on stack overlflow that uses regmatches. 
 #regmatches is also on the cheat sheet: regmatches(string, gregexpr(pattern, string))
 #this directly extracts the pattern
-handle <- regmatches(notrt_trump$text[1], gregexpr("(?<=@)[A-Za-z0-9_]+", notrt_trump$text[1], perl = TRUE))
-print(handle) #nikkihaley
+handle <- regmatches(notrt_trump$text[1], gregexpr("@[A-Za-z0-9_]+", notrt_trump$text[1]))
+print(handle) #@nikkihaley
 
 #_______________________________________________________________________________
 #Question 6 (3 points)
@@ -123,8 +136,9 @@ print(handle) #nikkihaley
 #Use gregexpr() to obtain a list called "atsign", which shows the starting positions 
 #and length of the usernames associated with the "@" symbol in the "text" column.
 
-#we can use the same code as above and what we used in class. But I add perl=TRUE to get the pattern. 
-atsign <- gregexpr("(?<=@)[A-Za-z0-9_]+", notrt_trump$text, perl = TRUE)
+#we can use the same code as above and what we used in class. But I add perl=TRUE 
+#to get the pattern. 
+atsign <- gregexpr("@[A-Za-z0-9_]+", notrt_trump$text)
 
 print(atsign)
 
@@ -135,9 +149,12 @@ print(atsign)
 #we can scroll through the list to find the first hit, but this is time consuming. 
 #I found some code that uses which() and lengths() to find the 
 #lengths(atsign)>2 returns TRUE/FALSE for every element in the list. if the element in the list 
-#has more than 2 starting positions (and thus twitter handles) it shows TRUE, otherwise it shows FALSE
-#I also use which() so that the output only contains the elements that are TRUE so that I don't have to
-# manually scroll through the output to find the first position in the list that has more than 2 starting positions
+#has more than 2 starting positions (and thus twitter handles) it shows 
+#TRUE, otherwise it shows FALSE
+#I also use which() so that the output only contains the elements that are 
+#TRUE so that I don't have to
+# manually scroll through the output to find the first position in the list that 
+#has more than 2 starting positions
 
 which(lengths(atsign) >2) #first row: 159
 #_______________________________________________________________________________
@@ -157,31 +174,42 @@ for (x in 1:length(atsign[[159]])) {
                        atsign[[159]][x],
                        atsign[[159]][x] + attr(atsign[[159]], "match.length")[x] - 1)
   
-  print(at_content) #"flotus" "emmanuelmacron" "whitehouse"
+  print(at_content) #"@flotus" "@emmanuelmacron" "@whitehouse"
 }
 
 #alternatively, the code below using regmatches shows the same results
-handle_159 <- regmatches(notrt_trump$text[159], gregexpr("(?<=@)[A-Za-z0-9_]+", notrt_trump$text[159], perl = TRUE))
-print(handle_159) #"flotus" "emmanuelmacron" "whitehouse"
+#however, this approach does not use a loop so it does not meet the requirements of the
+#question. 
+#I am curious what you think: Are there any 優點 to using the code above as opposed to the
+#one below? Do you think the one below may not be able to extract handles under some 
+#circumstances?
+handle_159 <- regmatches(notrt_trump$text[159], gregexpr("@[A-Za-z0-9_]+", notrt_trump$text[159]))
+print(handle_159) #"@flotus" "@emmanuelmacron" "@whitehouse"
 
 
 #Now you have 30 points! Question 8 is a bonus!
 #_______________________________________________________________________________
 #Question 8 (5 points)
 
-#Using loops, extract the usernames associated with the "@" symbol in the text column of "notrt_trump" for all rows.
+#Using loops, extract the usernames associated with the "@" symbol in the 
+#text column of "notrt_trump" for all rows.
 
-#we can put the code above in another loop that goes through all the rows. And store the extracted usernames in a df
+#we can put the code above in another loop that goes through all the rows. 
+#And store the extracted usernames in a df
 #we can use parts of the code from last lecture 
 #create empty df
 df <- data.frame()
-#for every row in the notr_trump df, use gregexpr to get the starting positions and length of the handles
+#for every row in the notr_trump df, use gregexpr to get the starting positions 
+#and length of the handles
 for (i in 1:nrow(notrt_trump)) {
-  atsign <- gregexpr("(?<=@)[A-Za-z0-9_]+", notrt_trump$text[i], perl=TRUE)
+  atsign <- gregexpr("@[A-Za-z0-9_]+", notrt_trump$text[i], perl=TRUE)
   
-  #here we do the same as before. However, this time we replace substr(notrt_trump$text[8], with substr(notrt_trump$text[i],
-  #this makes the code loop through all the sentences and extract the hasthags from all of them
-  #this is done in the same way. #at_content = the starting positions of the handles in the text column of row 8 
+  #here we do the same as before. However, this time we replace substr(notrt_trump$text[8], 
+  #with substr(notrt_trump$text[i],
+  #this makes the code loop through all the sentences and extract 
+  #the hasthags from all of them
+  #this is done in the same way. #at_content = the starting positions of the 
+  #handles in the text column of row 8 
   #+ the length of said handles -1 (to get rid of the space)
   for (x in 1:length(atsign[[1]])) {
     at_content <- substr(notrt_trump$text[i],
@@ -195,11 +223,12 @@ for (i in 1:nrow(notrt_trump)) {
   }
 }
 
-#alternatively, we can use regmatches to get the same results. 
-all_handle <- regmatches(notrt_trump$text, gregexpr("(?<=@)[A-Za-z0-9_]+", notrt_trump$text, perl = TRUE))
 
-# putting the output into a df was a little too complicated for me so I used chatGPT. It uses sapply to put 
-#everything into the df. 
-df <- data.frame(row_id = rep(1:nrow(notrt_trump), sapply(all_handle, length)),
-                 usernames = unlist(all_handle))
+#[EXTRA POSSIBILITY] alternatively, we can use regmatches toget the same results.
+#the following returns a list that shows the handles per index number
+#I am aware that this alternative solution does not use a loop
+#just putting it here as a little extra side possibility
+all_handle <- regmatches(notrt_trump$text, gregexpr("@[A-Za-z0-9_]+", notrt_trump$text))
+
+
 
