@@ -645,12 +645,12 @@ house_115_g<-house_115_2016%>%
 #calculate every state's party gender ratio by state, you have to divide it by
 #this state's total number of lawmakers, not by the whole dataset. 
 #so the answer below was wrong
-house_115_stateratio <-house_115_2016%>%
-  group_by(gender, party, state)%>%
-  summarise(sex=n(),
-            ratio=n()/nrow(.))
+# house_115_stateratio <-house_115_2016%>%
+#   group_by(gender, party, state)%>%
+#   summarise(sex=n(),
+#             ratio=n()/nrow(.))
 
-#nowt the proper one
+#code below only shows rate calculated from the total number of men and women reps in the state, not per party
 total_per_state<-house_115_2016%>%
   group_by(state)%>%
   summarise(rep=n())
@@ -667,6 +667,48 @@ merged_df <-total_per_state%>%
 merged_df <- merged_df %>% 
   mutate(sex_ratio = sex/rep)
 
+
+#Now the proper one. state party ratio (so calculated from the number of men and women rep per party per state)
+
+#now every party's gender ratio per state
+#get representatives per party per state
+total_partyrep_per_state <- house_115_2016%>%
+  group_by(party, state)%>% #we basically only add party here
+  summarise(total_party_reps=n())
+
+#now the party sex ratio per state
+gender_party_state <-house_115_2016%>%
+  group_by(gender, party, state)%>%
+  summarise(sex=n())
+
+#now with the proper one
+merged_df <- gender_party_state%>% #it is important what order you put this in. otherwise it might not work. 
+  left_join(total_partyrep_per_state, by=c('state', 'party'))
+
+merged_df <- merged_df %>%
+  mutate(sex_ratio=sex/total_party_reps)
+
+#extra (just every state's gender ratio)
+
+
+#total representatives per state per state
+house115_stateratio <- house_115_2016%>%
+  group_by(state)%>%
+  summarise(rep=n())
+
+#count how many "M" and "F" representatives per state 
+state_ratio <-house_115_2016%>%
+  group_by(state, gender, sex)%>%
+  summarise(sex=n())
+
+#merge the two together 
+merged_df <- state_ratio%>%
+  left_join(house115_stateratio, by='state')
+
+merged_df <- merged_df %>% 
+  mutate(sex_ratio = sex/rep)
+
+  
 #_____________________________________________________
 setwd("/Users/jasperhewitt/Desktop/big data & social analysis/code/datasets")
 trump <- read_excel("trumpscore.xlsx")
