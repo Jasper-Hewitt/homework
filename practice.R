@@ -1633,8 +1633,10 @@ ggplot(tw_google_l, aes(x=date, y=value, group=move, color=move))+
 time_date_1 <- as. POSIXct('2015-04-07 10:15:30')
 time_date_2 <- as.POSIXct("2015-04-07 101530")
 time_date_3 <- as.POSIXct("20150407 101530")
+                                                                
 
-time_date_3 <- as.POSIXct("20150407 101530", format="%Y%m%d %H%M%S")
+time_date_2 <- as.POSIXct("2015-04-07 10:15:30", format='%Y-%m-%d %H:%M:%S') #added this yesterday bc I think you need to specify
+time_date_3 <- as.POSIXct("20150407 101530", format="%Y%m%d %H%M%S") 
 
 Sys.timezone() #system timezone
 
