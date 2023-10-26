@@ -1,8 +1,6 @@
 # homework-individual assignment fake news detection with BERT 6/12/22
 
 
-https://www.canva.com/design/DAFyPrvdtkA/Ig9j7h1p4bFDqAobJIAFBw/edit?utm_content=DAFyPrvdtkA&utm_campaign=designshare&utm_medium=link2&utm_source=sharebutton
-
 
 | model |  not finetuned   |finetuned (3 epochs) | 
 |  ---- |  ----  | ----  |
