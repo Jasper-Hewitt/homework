@@ -44,7 +44,6 @@ screenshot of the unfolded dataframe for closer inspection of the stemmed senten
 
 
 
-link presentation: https://www.canva.com/design/DAFy64_YtRY/3IDW5Bdapj83lase7bbMDg/edit
-
+link presentation: https://www.canva.com/design/DAFy64_YtRY/3IDW5Bdapj83lase7bbMDg/edit?utm_content=DAFy64_YtRY&utm_campaign=designshare&utm_medium=link2&utm_source=sharebutton
 
 
