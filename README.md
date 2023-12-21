@@ -3,26 +3,6 @@
 https://www.canva.com/design/DAF3ZvcmNTU/9W7vgiezGMZX8-xPXf3GrQ/edit?utm_content=DAF3ZvcmNTU&utm_campaign=designshare&utm_medium=link2&utm_source=sharebutton
 
 
-1. 三個候選人的得票率 （+- 3%）
-
-2.本島投票率最低的直轄市/縣市會是 (包括澎湖)
-
-3.本島投票率最高的直轄市/縣市會是 (包括澎湖)
-
-4.投票率多少 （正負1%才算）
-
-5.民進黨總席次
-
-6.選舉之後，最年輕的立委幾歲？（+- 1Y）
-
-7.選舉之後，立委的男女比例是多少？
-
-8.民進黨、國民黨、民眾黨之外的政黨（包括無黨籍）在立委總共得到多少席次？
-
-9.台中市第二選區當選人
-
-10.台南市第三選區國民黨候選人得票率? （+-2%）
-
 
 
 | model |  not finetuned   |finetuned (3 epochs) | 
