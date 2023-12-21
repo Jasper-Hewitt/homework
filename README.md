@@ -7,8 +7,6 @@ https://www.canva.com/design/DAF3ZvcmNTU/9W7vgiezGMZX8-xPXf3GrQ/edit?utm_content
 
 2.bonus: 每候選人的得票率 (+- 3%)
 
-3.韓國瑜當選國會議長 【刪掉】
-
 4.本島投票率最低的直轄市/縣市會是
 
 5.本島投票率最高的直轄市/縣市會是
@@ -22,8 +20,6 @@ https://www.canva.com/design/DAF3ZvcmNTU/9W7vgiezGMZX8-xPXf3GrQ/edit?utm_content
 9.選舉之後，立委的男女比例是多少？
 
 10.民進黨、國民黨、民眾黨之外的政黨（包括無黨籍）在立委總共得到多少席次？
-
-11.台北市第一選區當選人 【刪掉】
 
 12.台中市第二選區當選人
 
