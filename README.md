@@ -7,11 +7,11 @@ https://www.canva.com/design/DAF3ZvcmNTU/9W7vgiezGMZX8-xPXf3GrQ/edit?utm_content
 
 2.bonus: 每候選人的得票率 (+- 3%)
 
-3.韓國瑜當選國會議長
+3.韓國瑜當選國會議長 【刪掉】
 
 4.投票率最低的直轄市/縣市會是
 
-5.投票率最低的直轄市/縣市會是
+5.投票率最高的直轄市/縣市會是
 
 6.投票率破歷史高 
 
