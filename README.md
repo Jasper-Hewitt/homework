@@ -25,9 +25,7 @@ https://www.canva.com/design/DAF3ZvcmNTU/9W7vgiezGMZX8-xPXf3GrQ/edit?utm_content
 
 13.台南市第三選區國民黨候選人得票率? 
 
-14.沒當選的話柯文哲請辭黨主席
 
-15.台北市之外，柯文哲在總統大選得票率最高的直轄市/縣市是
 
 | model |  not finetuned   |finetuned (3 epochs) | 
 |  ---- |  ----  | ----  |
