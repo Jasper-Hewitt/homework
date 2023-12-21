@@ -9,7 +9,7 @@ https://www.canva.com/design/DAF3ZvcmNTU/9W7vgiezGMZX8-xPXf3GrQ/edit?utm_content
 
 3.本島投票率最高的直轄市/縣市會是 (包括澎湖)
 
-4.投票率多少
+4.投票率多少 （正負1%才算）
 
 5.民進黨總席次
 
