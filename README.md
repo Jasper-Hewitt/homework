@@ -21,7 +21,7 @@ https://www.canva.com/design/DAF3ZvcmNTU/9W7vgiezGMZX8-xPXf3GrQ/edit?utm_content
 
 9.台中市第二選區當選人
 
-10.台南市第三選區國民黨候選人得票率? 
+10.台南市第三選區國民黨候選人得票率? （+-2%）
 
 
 
