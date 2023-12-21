@@ -3,7 +3,7 @@
 https://www.canva.com/design/DAF3ZvcmNTU/9W7vgiezGMZX8-xPXf3GrQ/edit?utm_content=DAF3ZvcmNTU&utm_campaign=designshare&utm_medium=link2&utm_source=sharebutton
 
 
-1. 三個候選人的得票率總統大選候選人排名
+1. 三個候選人的得票率 （+- 3%）
 
 2.本島投票率最低的直轄市/縣市會是
 
