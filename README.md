@@ -13,7 +13,7 @@ https://www.canva.com/design/DAF3ZvcmNTU/9W7vgiezGMZX8-xPXf3GrQ/edit?utm_content
 
 5.本島投票率最高的直轄市/縣市會是
 
-6.投票率破歷史高 
+6.投票率多少() 
 
 7.民進黨、國民黨及民眾黨每一政黨的席次數（+-3個席次）
 
