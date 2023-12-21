@@ -19,7 +19,7 @@ https://www.canva.com/design/DAF3ZvcmNTU/9W7vgiezGMZX8-xPXf3GrQ/edit?utm_content
 
 8.選舉之後，最年輕的立委幾歲？（+- 1Y）
 
-9.選舉之後，立委的男女比例是多少？(+-3%)
+9.選舉之後，立委的男女比例是多少？
 
 10.民進黨、國民黨、民眾黨之外的政黨（包括無黨籍）在立委總共得到多少席次？（+-一個席次）
 
