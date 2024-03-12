@@ -46,9 +46,6 @@ unstemmed code: https://github.com/Jasper-Hewitt/homework/blob/main/homework_UNs
 screenshot of the unfolded dataframe for closer inspection of the stemmed sentences: https://github.com/Jasper-Hewitt/homework/blob/main/example%20stemmed%20sentences.png
 
 
-https://www.canva.com/design/DAF_M4-uIQ8/KXtsHfR9qZMKU6r152NqNw/edit
-
-
 
 
 
